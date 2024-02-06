@@ -9,12 +9,6 @@ function App() {
   const [userID, setuserID] = useState(0);
 
   return (
-    // <>
-    //   <PostGallery />
-    // // </>
-    //     <>
-    //   <UserDetail userID={58} />
-    // </>
     <Router>
       <h1>MyFace</h1>
       <Routes>
