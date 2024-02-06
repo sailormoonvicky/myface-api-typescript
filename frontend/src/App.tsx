@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, {useState} from "react";
+import { PostGallery } from './components/post-list';
+import Switch, { BrowserRouter as Router, Route,Routes, Link } from 'react-router-dom';
+import { UserDetail } from './components/user-detail.tsx';
 import './App.css'
+import {UserList} from './components/user_list.tsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userID, setuserID] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    // <>
+    //   <PostGallery />
+    // // </>
+    //     <>
+    //   <UserDetail userID={58} />
+    // </>
+    <Router>
+      <h1>MyFace</h1>
+      <Routes>
+        <Route path='/posts'
+              element={<PostGallery />} />
+        <Route path='/users'
+              element={<UserList setuserID = {setuserID}/>} />
+        <Route path={`/users/${userID}`}
+              element={<UserDetail userID={userID}/>} /> 
+      </Routes>
+
+
+    </Router>
   )
 }
 
