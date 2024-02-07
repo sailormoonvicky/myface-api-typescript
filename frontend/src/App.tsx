@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import { PostGallery } from './components/post-list';
 import Switch, { BrowserRouter as Router, Route,Routes, Link } from 'react-router-dom';
 import { UserDetail } from './components/user-detail.tsx';
-import './App.css'
+import './App.scss'
+import './style.scss'
 import {UserList} from './components/user_list.tsx';
 
 function App() {
