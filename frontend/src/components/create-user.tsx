@@ -1,55 +1,88 @@
-import React, {useEffect, useState} from "react";
+import { useState, FormEventHandler, ChangeEventHandler } from "react";
+import { CreateUserRequest } from "../../../src/models/api/createUserRequest";
 
 export const CreateUser:React.FC = () => {
-    const [inputName, setInputName] = useState('')
+    const [inputs, setInputs] = useState<CreateUserRequest>({
+        name: undefined || '',
+        username: undefined || '',
+        profileImageUrl: undefined || '',
+        coverImageUrl: undefined || '',
+        email: undefined || ''
+    });
 
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        const {name, value} = event.target;
+        setInputs(values => ({...values, [name]: value}))
+    }
+
+    const handleSubmit:FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+        console.log(inputs)
+        fetch("http://localhost:3001/users/create", {
+          method: 'POST',
+          body: JSON.stringify(inputs),          
+        })
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error(response.statusText);
+            }
+    
+            return response.json();
+          })
+          .then(() => {
+            console.log("We'll be in touch soon.");
+          })
+          .catch((err) => {
+            console.log(err.toString());
+          });
+      };
 
     return (
         <>
-            <div className="banner"><h1>Create User</h1></div>
-            <div className="userForm">
-                <form className="createUser" method="post" action="/users/create">
-                    <label htmlFor="name">
-                        Name:
-                        <input id="name" type="text" name="name" value={inputName} onChange={(event) => setInputName(event.target.value)} required />
-                    </label>
-                    <label htmlFor="username">
-                        Username:
-                        <input id="username" type="text" name="username" required/>
-                    </label>
-                    <label htmlFor="email">
-                        Email:
-                        <input id="email" type="email" name="email" required/>
-                    </label>
-                    <label htmlFor="profileImageUrl">
-                        ProfileImageUrl:
-                        <input id="profileImageUrl" type="text" name="profileImageUrl"/>
-                    </label>
-                    <label htmlFor="coverImageUrl">
-                        CoverImageUrl:
-                        <input id="coverImageUrl" type="text" name="coverImageUrl" />
-                    </label>
-                    <button id="submit-btn" type="submit">Submit</button>
-                </form>
-            </div>
+        <form onSubmit={handleSubmit}>
+            <label>Enter your name:
+            <input 
+            type="text" 
+            name="name" 
+            value={inputs.name || ""} 
+            onChange={handleChange}
+            />
+            </label>
+            <label>Enter your username:
+            <input 
+                type="text" 
+                name="username" 
+                value={inputs.username || ""} 
+                onChange={handleChange}
+            />
+            </label>
+            <label>Enter your Profile Image URL:
+            <input 
+                type="text" 
+                name="profileImageUrl" 
+                value={inputs.profileImageUrl || ""} 
+                onChange={handleChange}
+            />
+            </label>
+            <label>Enter your Cover Image URL:
+            <input 
+                type="text" 
+                name="coverImageUrl" 
+                value={inputs.coverImageUrl || ""} 
+                onChange={handleChange}
+            />
+            </label>
+            <label>Enter your Email ID:
+            <input 
+                type="email" 
+                name="email" 
+                value={inputs.email || ""} 
+                onChange={handleChange}
+            />
+            </label>
+          <button type="submit">Submit</button>
+        </form>
         </>
     )
 }
 
-// import {useState} from 'react';
- 
-// export default function  ControlledComponent()  {
-// 	const  [inputValue, setInputValue] =  useState('');
-
-// 	const  handleChange = (event) => {
-// 		setInputValue(event.target.value);
-// 	};
-
-// return  (
-// <form>
-// 	<label>Input Value:
-// 	<input  type="text"  value={inputValue} onChange={handleChange} />
-// 	</label>
-// 	<p>Input Value: {inputValue}</p>
-// </div>
-// )};

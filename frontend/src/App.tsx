@@ -5,6 +5,7 @@ import { UserDetail } from './components/user-detail.tsx';
 import './App.scss'
 import './style.scss'
 import {UserList} from './components/user_list.tsx';
+import {CreateUser} from './components/create-user.tsx';
 
 function App() {
   const [userID, setuserID] = useState(0);
@@ -19,6 +20,8 @@ function App() {
               element={<UserList setuserID = {setuserID}/>} />
         <Route path={`/users/${userID}`}
               element={<UserDetail userID={userID}/>} /> 
+        <Route path='/users/create'
+              element={<CreateUser />} />
       </Routes>
 
 
