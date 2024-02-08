@@ -13,28 +13,74 @@ export const CreateUser:React.FC = () => {
     const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         const {name, value} = event.target;
         setInputs(values => ({...values, [name]: value}))
+      
     }
+    const usernameCheckValidity =() => {
+        const regex = /^[a-z]+$/;
+        console.log(inputs.username)
+        console.log(regex.test(inputs.username))
+        return regex.test(inputs.username);
+      }
+    
+      const emailCheckValidity =() => {
+        const regex = /[.'_%\-+A-Za-z0-9]+@\w+([-.]?\w+)*(\.\w{2,3})+/;
+        return regex.test(inputs.email);
+      }
+    
+    const validateForm = () => {
+        let errMsg = '';
+        let ifValid = true;
+        //Check none of the values are null
+        Object.entries(inputs).forEach(([k, v]) => {
+            if(v===undefined || v===''){
+                errMsg = errMsg + 'Please enter ' + k + '<br />';
+                ifValid = false;      
+            }
+        });
+
+        //Check for valid email id
+        if(!emailCheckValidity()){
+            ifValid = false;
+            errMsg = errMsg + 'Please enter a valid Email ID' + '<br />';
+        }
+        //Check for valid email id
+        if(!usernameCheckValidity()){
+            ifValid = false;
+            errMsg = errMsg + 'Please enter a valid username (lower case letters only without spaces)' + '<br />';
+        }
+        console.log('-->',errMsg)
+        let element = document.getElementById("divError");
+        if(element!==null)
+            {element.innerHTML = errMsg;}
+        return ifValid;        
+      };
 
     const handleSubmit:FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         console.log(inputs)
-        fetch("http://localhost:3001/users/create", {
-          method: 'POST',
-          body: JSON.stringify(inputs),          
-        })
-          .then((response) => {
-            if (response.status !== 200) {
-              throw new Error(response.statusText);
-            }
-    
-            return response.json();
-          })
-          .then(() => {
-            console.log("We'll be in touch soon.");
-          })
-          .catch((err) => {
-            console.log(err.toString());
-          });
+        
+        if(validateForm()){
+            fetch("http://localhost:3001/users/create/", {
+            method: 'POST',
+            body: JSON.stringify(inputs),   
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },          
+            })
+            .then((response) => {
+                if (response.status !== 200) {
+                throw new Error(response.statusText);
+                }   
+                
+            })
+            .then(() => {
+                console.log("We'll be in touch soon.");
+            })
+            .catch((err) => {
+                console.log(err.toString());
+            });
+        }
       };
 
     return (
@@ -82,6 +128,7 @@ export const CreateUser:React.FC = () => {
             </label>
           <button type="submit">Submit</button>
         </form>
+        <div id="divError"></div>
         </>
     )
 }
