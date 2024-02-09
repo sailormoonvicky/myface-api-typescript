@@ -59,17 +59,3 @@ export const UserDetail: React.FC<{userID: number}> = (props:{userID: number}) =
         </>
     )
 }
-
-{/* <div className="flexColumn">                
-                    <p className="heading">{userDetail.name}'s Posts</p>
-                    <div className="flexCardsContainer">
-                        {userDetail.posts?.map((post: { imageUrl: string; createdAt: string; message: string; }) => (
-                            <div className="flexCard" key={post.createdAt}>
-                                <div className="card">
-                                    <img src={post.imageUrl} alt="Post"></img>
-                                    <div>{post.createdAt}</div>
-                                    <div>{post.message}</div>
-                                </div>
-                            </div>
-                        )) || 'No posts found'} 
-                    </div> */}

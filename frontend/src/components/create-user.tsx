@@ -17,8 +17,6 @@ export const CreateUser:React.FC = () => {
     }
     const usernameCheckValidity =() => {
         const regex = /^[a-z]+$/;
-        console.log(inputs.username)
-        console.log(regex.test(inputs.username))
         return regex.test(inputs.username);
       }
     
@@ -57,7 +55,6 @@ export const CreateUser:React.FC = () => {
 
     const handleSubmit:FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
-        console.log(inputs)
         
         if(validateForm()){
             fetch("http://localhost:3001/users/create/", {
@@ -71,8 +68,7 @@ export const CreateUser:React.FC = () => {
             .then((response) => {
                 if (response.status !== 200) {
                 throw new Error(response.statusText);
-                }   
-                
+                }                   
             })
             .then(() => {
                 console.log("We'll be in touch soon.");

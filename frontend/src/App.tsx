@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import { PostGallery } from './components/post-list';
-import Switch, { BrowserRouter as Router, Route,Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 import { UserDetail } from './components/user-detail.tsx';
 import './App.scss'
 import './style.scss'

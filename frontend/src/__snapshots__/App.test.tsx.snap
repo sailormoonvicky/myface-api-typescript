@@ -1,0 +1,162 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Regression / Snapshot test Snapshot for App 1`] = `
+<h1>
+  MyFace
+</h1>
+`;
+
+exports[`Regression / Snapshot test Snapshot for Create User 1`] = `
+[
+  <form
+    onSubmit={[Function]}
+  >
+    <label>
+      Enter your name:
+      <input
+        name="name"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      Enter your username:
+      <input
+        name="username"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      Enter your Profile Image URL:
+      <input
+        name="profileImageUrl"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      Enter your Cover Image URL:
+      <input
+        name="coverImageUrl"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label>
+      Enter your Email ID:
+      <input
+        name="email"
+        onChange={[Function]}
+        type="email"
+        value=""
+      />
+    </label>
+    <button
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>,
+  <div
+    id="divError"
+  />,
+]
+`;
+
+exports[`Regression / Snapshot test Snapshot for Post List 1`] = `
+[
+  <div
+    className="banner"
+  >
+    <h1>
+      Posts
+    </h1>
+  </div>,
+  <div
+    className="posts"
+  >
+    <ol />
+  </div>,
+]
+`;
+
+exports[`Regression / Snapshot test Snapshot for User Detail 1`] = `
+<div
+  className="flexRow"
+>
+  <div
+    className="flexColumn"
+  >
+    <img
+      alt="This is cover image"
+      className="coverImage"
+    />
+    <div
+      className="flexAvatarContainer"
+    >
+      <img
+        alt="This is cover image"
+        className="profileImage"
+      />
+      <div
+        className="textContainer"
+      >
+        <p
+          className="fullName"
+        />
+        <div
+          className="alignTextLeft"
+        >
+          <div
+            className="userName"
+          />
+          <div
+            className="email"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="flexColumn"
+  >
+    <p
+      className="heading"
+    >
+      's Posts
+    </p>
+    <div
+      className="flexCardsContainer"
+    />
+    <div>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Load More
+      </button>
+    </div>
+  </div>
+  <div
+    className="flexColumn"
+  >
+    <img
+      alt="This is cover image"
+      className="coverImage"
+    />
+  </div>
+  <div
+    className="flexColumn"
+  >
+    <img
+      alt="This is cover image"
+      className="coverImage"
+    />
+  </div>
+</div>
+`;
